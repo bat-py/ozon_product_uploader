@@ -94,7 +94,7 @@ def post_request(json_data):
          "language": 'DEFAULT'
          }
 
-    req = requests.post('https://api-seller.ozon.ru/v3/category/attribute', headers=header, json=json_data)
+    req = requests.post('https://api-seller.ozon.ru/v2/product/import', headers=header, json=json_data)
     print(req.status_code)
 
 
