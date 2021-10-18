@@ -20,7 +20,12 @@ def get_header():
 
 
 def get_product_data():
+    """
+    Возвращает dict: { barcode: [articule, sex], ... }
+    :return:
+    """
     with open("positions.csv", encoding='utf-8') as r_file:
+        # Хранит dict:  { barcode: [articule, sex] }
         items_csv = {}
 
         # Создаем объект reader, указываем символ-разделитель ","
@@ -33,7 +38,7 @@ def get_product_data():
                 # Вывод строки, содержащей заголовки для столбцов
                 print(f'Файл содержит столбцы: {", ".join(row)}')
             else:
-                items_csv[row[3]] = row[1]
+                items_csv[row[3]] = [row[1], row[9]]
 
             count += 1
         return items_csv
@@ -42,8 +47,7 @@ def get_product_data():
 def photos_handler(items_csv):
     """
     Вернет dict c данными:
-    {'X120385-c01': ['fotos/Сеанс в студии-1116.jpg', 'fotos/Сеанс в студии-1117.jpg', ...], 'X8496-10-91': [...], ...}
-    Ключ это артикул товара, а в массиве ссылки на фотографии товора
+    { articule: [barcode, sex, [links_to_images, ...] ] }
 
     :param items_csv:
     :return:
@@ -55,6 +59,7 @@ def photos_handler(items_csv):
     hostname = socket. gethostname()
     local_ip = socket. gethostbyname(hostname)
 
+    # Хранит dict:  { articule: [barcode, sex, [links_to_images, ...] ] }
     fotosart = {}
     group = []
     for foto in fotos:
@@ -65,19 +70,18 @@ def photos_handler(items_csv):
             group.append(os.path.join(local_ip, 'upload', foto))
         else:
             try:
-                barcode = dec[0].data.decode()
-                article = items_csv[barcode.replace('+', '').lower()]
-
-                fotosart[article] = group
+                barcode = dec[0].data.decode().replace('+', '').lower()
+                article = items_csv[barcode][0]
+                fotosart[article] = [barcode, items_csv[barcode][1], group]
             finally:
                 group = []
 
-    print(fotosart)
     return fotosart
+
 
 if __name__ == '__main__':
     header = get_header()
 
     product_data = get_product_data()
 
-    photos_handler(product_data)
+    ready_data = photos_handler(product_data)
