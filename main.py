@@ -5,18 +5,6 @@ from pyzbar.pyzbar import decode
 from uploader import uploader
 import socket
 
-def get_header():
-    """
-    Из файла config.ini берет Client-Id и Api-Key. Вернет библиотеку header = {'Client-Id': data[0], 'Api-Key': data[1]}
-    """
-
-    with open('config.ini') as conf:
-        config = conf.readlines()
-
-        data = [i.split('=')[1].strip().replace('"', '') for i in config]
-        header = {'Client-Id': data[0], 'Api-Key': data[1]}
-
-        return header
 
 
 def get_product_data():
@@ -80,8 +68,7 @@ def photos_handler(items_csv):
 
 
 if __name__ == '__main__':
-    header = get_header()
-
     product_data = get_product_data()
-
     ready_data = photos_handler(product_data)
+
+    uploader(ready_data)
