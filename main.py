@@ -3,7 +3,7 @@ import os
 from PIL import Image
 from pyzbar.pyzbar import decode
 from uploader import uploader
-
+import socket
 
 def get_header():
     """
@@ -52,6 +52,9 @@ def photos_handler(items_csv):
     fotos = os.listdir('fotos')
     fotos.sort()
 
+    hostname = socket. gethostname()
+    local_ip = socket. gethostbyname(hostname)
+
     fotosart = {}
     group = []
     for foto in fotos:
@@ -59,7 +62,7 @@ def photos_handler(items_csv):
         img = Image.open(path)
         dec = decode(img)
         if not dec:
-            group.append(os.path.join('upload', foto))
+            group.append(os.path.join(local_ip, 'upload', foto))
         else:
             try:
                 barcode = dec[0].data.decode()
