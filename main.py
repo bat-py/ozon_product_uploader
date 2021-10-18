@@ -59,7 +59,7 @@ def photos_handler(items_csv):
         img = Image.open(path)
         dec = decode(img)
         if not dec:
-            group.append(path)
+            group.append(os.path.join('upload', foto))
         else:
             try:
                 barcode = dec[0].data.decode()
