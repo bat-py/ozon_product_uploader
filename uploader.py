@@ -91,7 +91,7 @@ def uploader(data):
 
                     ],
                     "barcode": f"{datas[0]}",
-                    "category_id": f"{category_id}",
+                    "category_id": category_id,
                     "images": datas[2],
                     "name": f"{sex_for_name} {season} {brand}",
                     "offer_id": f"{article}",
