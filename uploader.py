@@ -99,6 +99,8 @@ def uploader(data):
         post_request(json_data)
 
         # TEST
+        print(json_data)
+
         if ii == 5:
             break
 
