@@ -96,7 +96,7 @@ def uploader(data):
 
         }
 
-        ready_json = json.dumps(json_data)
+        ready_json = json.dumps(json_data, ensure_ascii=False)
         post_request(ready_json)
 
         # TEST
