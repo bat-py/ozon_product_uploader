@@ -22,7 +22,7 @@ def post_request(json_data):
          "language": 'DEFAULT'
          }
 
-    req = requests.post('https://api-seller.ozon.ru/v2/product/import', headers=header, data=json_data)
+    req = requests.post('https://api-seller.ozon.ru/v2/product/import', headers=header, data=json_data.encode('utf-8'))
     print(req.text)
 
 
@@ -96,7 +96,7 @@ def uploader(data):
 
         }
 
-        ready_json = json.dumps(json_data, ensure_ascii=False)
+        ready_json = json.dumps(json_data, ensure_ascii=False, )
         post_request(ready_json)
 
         # TEST
