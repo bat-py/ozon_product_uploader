@@ -166,7 +166,6 @@ def uploader(data):
         }
 
         post_request(json_data)
-        break
 
 
 
