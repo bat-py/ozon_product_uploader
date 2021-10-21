@@ -109,13 +109,6 @@ def uploader(data):
         ready_json = json.dumps(json_data, ensure_ascii=False, )
         post_request(ready_json)
 
-        # TEST
-        print(ready_json)
-
-        if ii == 5:
-            break
-
-        ii += 1
 
 
 
