@@ -35,14 +35,18 @@ def uploader(data):
     for article, datas in data.items():
         if datas[1].lower().strip() == 'мужской':
             sex_for_name = 'Мужские очки'
+            category_id = 17038455
         elif datas[1].lower().strip() == 'женский':
             sex_for_name = 'Женские очки'
+            category_id = 78302015
         elif datas[1].lower().strip() == 'женский, мужской' or datas[1].lower().strip() == 'мужской, женский':
             sex_for_name = 'Очки Унисекс'
+            category_id = 85848444
         else:
             sex_for_name = 'Мужские очки'
+            category_id = 17038455
 
-        # URL to images
+            # URL to images
         print(datas[2])
 
         json_data = {
@@ -87,7 +91,7 @@ def uploader(data):
 
                     ],
                     "barcode": f"{datas[0]}",
-                    "category_id": 17038455,
+                    "category_id": {category_id},
                     "images": datas[2],
                     "name": f"{sex_for_name} {season} {brand}",
                     "offer_id": f"{article}",
