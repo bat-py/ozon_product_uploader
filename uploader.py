@@ -17,10 +17,6 @@ def get_header():
 
 def post_request(json_data):
     header = get_header()
-    a = {"attribute_type": "REQUIRED",
-         "category_id": [17038455],
-         "language": 'DEFAULT'
-         }
 
     req = requests.post('https://api-seller.ozon.ru/v2/product/import', headers=header, data=json_data.encode('utf-8'))
     print(req.text)
@@ -92,9 +88,19 @@ def uploader(data):
                     ],
                     "barcode": f"{datas[0]}",
                     "category_id": category_id,
+                    "depth": 200,
+                    "dimension_unit": "mm",
+                    "height": 70,
                     "images": datas[2],
                     "name": f"{sex_for_name} {season} {brand}",
                     "offer_id": f"{article}",
+                    "old_price": "1000",
+                    "premium_price": "750",
+                    "price": "800",
+                    "vat": "0",
+                    "weight": 100,
+                    "weight_unit": "g",
+                    "width": 100
                 }
             ]
 
