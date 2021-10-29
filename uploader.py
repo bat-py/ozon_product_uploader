@@ -26,9 +26,12 @@ def uploader(data):
     # в data есть dict:  { articule: [barcode, sex, [links_to_images, ...] ] }
     season = 'Весна-Лето 2021'
     brand = 'POLARIZED'
-
+    i = 0
     ii = 0
     for article, datas in data.items():
+        if i > 3:
+            break
+        i += 1
         if datas[1].lower().strip() == 'мужской':
             sex_for_name = 'Мужские очки'
             category_id = 17038455
