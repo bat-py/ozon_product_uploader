@@ -42,7 +42,7 @@ def uploader(data):
             sex_for_name = 'Мужские очки'
             category_id = 17038455
 
-            # URL to images
+        # URL to images
         print(datas[2])
 
         json_data = {

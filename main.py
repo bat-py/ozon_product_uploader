@@ -55,7 +55,7 @@ def photos_handler(items_csv):
         img = Image.open(path)
         dec = decode(img)
         if not dec:
-            group.append(os.path.join(local_ip, 'sup_fotos', foto))
+            group.append('https://marketplace2.ru/fotos/'+foto)
         else:
             try:
                 barcode = dec[0].data.decode().replace('+', '').lower()
